@@ -227,7 +227,7 @@ export default {
 
 .a-section .h .txt {
   padding-right: 30rpx;
-  background: url("http://ac-3yr0g9cz.clouddn.com/2cdba05369e10f934e54.png") right 4rpx no-repeat;
+  background: url("http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/index-titleArrow-219f348910.png") right 4rpx no-repeat;
   background-size: 16.656rpx 27rpx;
   display: inline-block;
   height: 36rpx;
