@@ -145,6 +145,13 @@ module.exports = [
     }
   },
   {
+    path: 'pages/ucenter/login',
+    name: 'login',
+    config: {
+      navigationBarTitleText: '登陆'
+    }
+  },
+  {
     path: 'pages/ucenter/footprint',
     name: 'footprint',
     config: {

@@ -1,15 +1,17 @@
 <template >
 <view class="container">
   <view class="profile-info">
-    <view v-if="userInfo.avatar">
-      <img class="avatar" :src="userInfo.avatar"/>
+    <view v-if="userInfo.avatarUrl">
+      <img class="avatar" :src="userInfo.avatarUrl"/>
       <view class="info">
-        <text class="name">{{userInfo.nickname}}</text>
+        <text class="name">{{userInfo.nickName}}</text>
       </view>
     </view>
     <view v-else class="goLogin">
+      <navigator url="/pages/ucenter/login">
       <img class="icon" src="/static/images/ic_menu_me_pressed.png"/>
-      <button v-if="canIUse" open-type="getUserInfo" @getuserinfo="goLogin" class="goLoginBtn" >点击，授权登录~</button>
+      <!-- <button v-if="canIUse" open-type="getUserInfo" @getuserinfo="goLogin" class="goLoginBtn" >点击，授权登录~</button> -->
+      </navigator>
     </view>
   </view>
 
@@ -87,15 +89,14 @@
       </navigator>
     </view>
   </view>
-  <view v-if="userInfo.avatar" class="logout" @click="exitLogin">退出登录</view>
+  <view v-if="userInfo.avatarUrl" class="logout" @click="exitLogin">退出登录</view>
 </view>
 </template>
 
 <script>
 import wx from 'wx';
 import getCurrentPages from 'wxFunction';
-import user from '@/services/user';
-var app = getApp();
+// var app = getApp();
 
 export default {
   data () {
@@ -108,32 +109,58 @@ export default {
     // console.log('全局变量', app);
     let userInfo = wx.getStorageSync('userInfo');
     let token = wx.getStorageSync('token');
-    // console.log('缓存中的个人信息userInfo', userInfo);
-    // console.log('缓存中的个人信息token', token);
-    if (userInfo && token) {
-      app.globalData.userInfo = userInfo;
-      app.globalData.token = token;
-    } else {
-      app.globalData.userInfo = null;
-      app.globalData.token = null;
-    }
-    if (app.globalData.userInfo) {
-      this.userInfo = app.globalData.userInfo;
+    console.log('缓存中的个人信息userInfo', userInfo);
+    console.log('缓存中的个人信息token', token);
+    // if (userInfo && token) {
+    //   app.globalData.userInfo = userInfo;
+    //   app.globalData.token = token;
+    // } else {
+    //   app.globalData.userInfo = null;
+    //   app.globalData.token = null;
+    // }
+    if (userInfo) {
+      this.userInfo = userInfo;
     } else {
       this.userInfo = {};
     }
+    wx.getSetting({
+      success (res) {
+        console.log('res', res)
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success (res) {
+              console.log('res.userInfo', res.userInfo)
+              // this.userInfo = res.userInfo
+              // 用户已经授权过
+              this.userInfo = res.userInfo;
+              console.log('用户已经授权过')
+            }
+          })
+        } else {
+          wx.removeStorageSync('token');
+          wx.removeStorageSync('userInfo');
+          console.log('用户还未授权过', res)
+          this.userInfo = {};
+        }
+      }
+    })
   },
-
+  mounted () {
+  },
   methods: {
     // 点击登陆
-    goLogin () {
-      user.loginByWeixin().then(res => {
-        this.userInfo = res.data.userInfo;
-        app.globalData.userInfo = res.data.userInfo;
-        app.globalData.token = res.data.token;
-      }).catch((err) => {
-        console.log('登陆失败', err)
-      });
+    goLogin (event) {
+      if (!event.mp.detail.rawData) {
+        wx.switchTab({
+          url: '/pages/ucenter/index'
+        })
+      } else {
+        this.userInfo = event.mp.detail.userInfo;
+        // app.globalData.userInfo = res.data.userInfo;
+        // app.globalData.token = res.data.token;
+        wx.setStorageSync('userInfo', this.userInfo);
+        wx.setStorageSync('token', event.mp.detail.token);
+      }
     },
     // 退出登陆
     exitLogin () {

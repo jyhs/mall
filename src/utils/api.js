@@ -1,9 +1,18 @@
 import request from './request'
 
 const ApiRootUrl = 'https://api2.huanjiaohu.com/mall/'
+const AopiComUrl = 'https://api2.huanjiaohu.com/'
 const ApiCommonUrl = 'https://api2.huanjiaohu.com/api/'
 
 const api = {
+  // 发送验证码
+  getVerification: (paramObj) => request.post('tools/sendVerification', paramObj, {
+    baseURL: AopiComUrl
+  }),
+  // 验证码检验
+  validateVerification: (paramObj) => request.post('tools/validateVerification', paramObj, {
+    baseURL: AopiComUrl
+  }),
   // 首页数据接口
   getIndexData: (r) => request.get('index/index', null, {
     baseURL: ApiRootUrl
