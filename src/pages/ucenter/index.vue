@@ -112,7 +112,7 @@
     </div>
         </view>
          <view class="userinfo-confirm">
-             <button v-if="canIUse" plain="true" :disabled="userInfo2.disabled" open-type="getUserInfo" @getuserinfo="onConfirm" @class="goLoginBtn" >微信授权并进入小程序</button>
+             <button v-if="canIUse" plain="true" :disabled="userInfo2.disabled" open-type="getUserInfo" @getuserinfo="onConfirm" @class="goLoginBtn" >进入小程序</button>
              <!-- <button v-if="canIUse" plain="true" @click="onConfirm" @class="goLoginBtn" >确定</button> -->
           </view>
       </view>
