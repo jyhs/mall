@@ -94,7 +94,7 @@
 </view>
 <view class="login" v-else>
     <view class="login-list">
-    <img class="img" src="http://yanxuan.nosdn.127.net/bff2e49136fcef1fd829f5036e07f116.jpg"/>
+    <img class="img" src="https://static.huanjiaohu.com/image/login_header.png"/>
       <view class="userinfo">
         <view class="userinfo-tel">
           <input maxlength="11" type="number" placeholder="请输入手机号" @input="bindInput"/>
@@ -112,7 +112,7 @@
     </div>
         </view>
          <view class="userinfo-confirm">
-             <button v-if="canIUse" plain="true" :disabled="userInfo2.disabled" open-type="getUserInfo" @getuserinfo="onConfirm" @class="goLoginBtn" >确定</button>
+             <button v-if="canIUse" plain="true" :disabled="userInfo2.disabled" open-type="getUserInfo" @getuserinfo="onConfirm" @class="goLoginBtn" >微信授权并进入小程序</button>
              <!-- <button v-if="canIUse" plain="true" @click="onConfirm" @class="goLoginBtn" >确定</button> -->
           </view>
       </view>
@@ -535,41 +535,61 @@ page{
   height: 100vh;
   overflow: hidden;
   background: #fff;
-  padding-left: 30rpx;
   border-top: 1px solid #e1e1e1;
 }
 
-.userinfo-tel{
+.userinfo-tel,.userinfo-code{
   display: flex;
-  border:#333 1px solid;
-  width:90%;
-  height:40px;
+  justify-content:space-between;
+  margin:20px;
+  border:solid 1px #d6d6d6;
+  border-radius:4px;
+}
+.userinfo-tel > input,
+.userinfo-code > input{
+  line-height:48px;
+  height:48px;
+  font-size:14px;
+  justify-content:space-between;
+  width:70%;
+  padding-left:10px;
 }
 
-.userinfo-tel button{
-  border:none;
-  bottom:6px;
-}
-
-.userinfo-code{
-  margin-top: 10px;
-  display: flex;
-  border:#333 1px solid;
-  width:90%;
-  height:40px;
-}
-
+.userinfo-tel button,
 .userinfo-code button{
   border:none;
-  bottom:6px;
+  color:#278cec;
+  height:24px;
+  margin:12px 0 0 0;
+  align-items:center;
+  padding:4px 0;
+  border-left:solid 1px #d6d6d6;
+  line-height:24px;
+  padding:0;
+  width:30%;
+  font-size:14px;
+  text-align:right;
+  padding:0 12px;
+  border-radius:0;
+}
+.userinfo-tel button{border:none;}
+
+.login-list > image{
+
+width:100%;
 }
 
 .userinfo-confirm{
-  width:90%;
+  width:100%;
 }
 
 .userinfo-confirm button{
   border:none;
+  margin:40px 20px 20px 20px;
+  color:white;
+  height:48px;
+  line-height:48px;
+  background: #26ab28;
 }
 
 </style>
