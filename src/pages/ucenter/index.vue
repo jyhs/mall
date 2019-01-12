@@ -1,11 +1,16 @@
 <template >
   <view>
-    <view class="container" v-if="userInfo.avatarUrl">
+    <view class="container">
       <view class="profile-info"/>
       <view class="user-menu">
         <view class="character-info">
-          <view>
-            <img class="avatar" :src="userInfo.avatarUrl">
+          <view v-if="userInfo.avatarUrl==avatarUrl">
+            <navigator url="/pages/ucenter/login" class="a">
+              <img class="avatar" :src="userInfo.avatarUrl">
+            </navigator>
+          </view>
+           <view v-else>
+              <img class="avatar" :src="userInfo.avatarUrl">
           </view>
           <view class="character-text">
             <view class="name">
@@ -41,7 +46,7 @@
             </view>
           </view>
         </view>
-        <view class="character-menu">
+        <view class="character-menu" v-if="userInfo.avatarUrl!=avatarUrl">
           <view class="item">
             <navigator url="/pages/ucenter/order" class="a">
               <view class="item-container">
@@ -101,7 +106,7 @@
                   <text class="icon address"></text>
                   <text class="txt">地址管理</text>
                 </view>
-                <view class="item-container-end">  
+                <view class="item-container-end">
                   <text class="icon">></text>
                 </view>
               </view>
@@ -134,9 +139,12 @@
             </navigator>
           </view>
         </view>
+        <view class="character-menu"  v-else>
+            <img class="avatar">
+        </view>
       </view>
     </view>
-    <view class="login" v-else>
+    <!-- <view class="login" v-else>
       <view class="login-list">
         <img class="img" src="https://static.huanjiaohu.com/image/login_header.png">
         <view class="userinfo">
@@ -163,11 +171,10 @@
               @getuserinfo="onConfirm"
               @class="goLoginBtn"
             >进入小程序</button>
-            <!-- <button v-if="canIUse" plain="true" @click="onConfirm" @class="goLoginBtn" >确定</button> -->
           </view>
         </view>
       </view>
-    </view>
+    </view>-->
   </view>
 </template>
 
@@ -180,7 +187,11 @@ import getCurrentPages from 'wxFunction';
 export default {
   data () {
     return {
-      userInfo: {},
+      userInfo: {
+        nickName: '未登录',
+        avatarUrl: 'https://api2.huanjiaohu.com/user/getAvatar?userId=0'
+      },
+      avatarUrl: 'https://api2.huanjiaohu.com/user/getAvatar?userId=0',
       timeCounter: null,
       showtime: null,
       userInfo2: {
@@ -205,8 +216,6 @@ export default {
     // }
     if (userInfo) {
       this.userInfo = userInfo;
-    } else {
-      this.userInfo = {};
     }
     wx.getSetting({
       success (res) {
@@ -223,7 +232,7 @@ export default {
         } else {
           wx.removeStorageSync('token');
           wx.removeStorageSync('userInfo');
-          console.log('用户还未授权过', res);
+          console.log('用户还未授权过', self.userInfo);
           // this.userInfo = {};
         }
       }
@@ -491,14 +500,14 @@ page {
 .user-menu .item .item-container {
   width: 100%;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 
 .user-menu .item .item-container .item-container-icon {
   display: flex;
 }
 
-.user-menu .item .item-container .item-container-end{
+.user-menu .item .item-container .item-container-end {
   margin-left: 200px;
 }
 
@@ -614,63 +623,69 @@ page {
   border-radius: 4px;
 }
 .userinfo-tel > input,
-.userinfo-code > input{
-  line-height:48px;
-  height:48px;
-  font-size:14px;
-  justify-content:space-between;
-  width:70%;
-  padding-left:36px;
+.userinfo-code > input {
+  line-height: 48px;
+  height: 48px;
+  font-size: 14px;
+  justify-content: space-between;
+  width: 70%;
+  padding-left: 36px;
 }
-.userinfo-tel > input
-{
-      background: url(https://static.huanjiaohu.com/icon/phone.png);
-      background-repeat: no-repeat;
-      background-size: 8%;
-      background-position: 10px;
+.userinfo-tel > input {
+  background: url(https://static.huanjiaohu.com/icon/phone.png);
+  background-repeat: no-repeat;
+  background-size: 8%;
+  background-position: 10px;
 }
-.userinfo-code > input
-{
-      background: url(https://static.huanjiaohu.com/icon/validate.png);
-      background-repeat: no-repeat;
-      background-size: 8%;
-      background-position: 10px;
+.userinfo-code > input {
+  background: url(https://static.huanjiaohu.com/icon/validate.png);
+  background-repeat: no-repeat;
+  background-size: 8%;
+  background-position: 10px;
 }
 .userinfo-tel button,
-.userinfo-code button{
-  border:none;
-  color:#278cec;
-  height:24px;
-  margin:12px 0 0 0;
-  align-items:center;
-  padding:4px 0;
-  border-left:solid 1px #d6d6d6;
-  line-height:24px;
-  padding:0;
-  width:30%;
-  font-size:14px;
-  text-align:right;
-  padding:0 12px;
-  border-radius:0;
-  flex-shrink:0;
+.userinfo-code button {
+  border: none;
+  color: #278cec;
+  height: 24px;
+  margin: 12px 0 0 0;
+  align-items: center;
+  padding: 4px 0;
+  border-left: solid 1px #d6d6d6;
+  line-height: 24px;
+  padding: 0;
+  width: 30%;
+  font-size: 14px;
+  text-align: right;
+  padding: 0 12px;
+  border-radius: 0;
+  flex-shrink: 0;
 }
-.captcha-button{font-size:14px;line-height:48px;padding-right:10px;width:50%;text-align: right}
-.userinfo-tel button{border:none;}
-
-.login-list > image{
-width:100%;
+.captcha-button {
+  font-size: 14px;
+  line-height: 48px;
+  padding-right: 10px;
+  width: 50%;
+  text-align: right;
+}
+.userinfo-tel button {
+  border: none;
 }
 
-.userinfo-confirm{
-  width:100%;
+.login-list > image {
+  width: 100%;
 }
 
-.userinfo-confirm button{
-  border:none;
-  margin:40px 20px 20px 20px;
-  color:white;
-  height:48px;
-  line-height:48px;
+.userinfo-confirm {
+  width: 100%;
+}
+
+.userinfo-confirm button {
+  border: none;
+  margin: 40px 20px 20px 20px;
+  color: white;
+  height: 48px;
+  line-height: 48px;
   background: #26ab28;
 }
 .character-info {
@@ -680,7 +695,6 @@ width:100%;
 
 .character-menu {
   background: #fff;
-  margin-top: 10px;
 }
 
 .character-text {

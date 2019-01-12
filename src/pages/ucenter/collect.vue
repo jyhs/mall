@@ -30,6 +30,42 @@ export default {
       this.getCollectList()
     ])
   },
+  onShow () {
+    let userInfo = wx.getStorageSync('userInfo');
+    let token = wx.getStorageSync('token');
+    let self = this;
+    console.log('缓存中的个人信息userInfo', userInfo);
+    console.log('缓存中的个人信息token', token);
+    if (userInfo) {
+      this.userInfo = userInfo;
+    } else {
+      this.userInfo = {};
+    }
+    wx.getSetting({
+      success (res) {
+        console.log('res', res);
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success (res) {
+              console.log('res.userInfo', res.userInfo);
+              // this.userInfo = res.userInfo
+              // 用户已经授权过
+              self.userInfo = res.userInfo;
+              console.log('用户已经授权过');
+            }
+          });
+        } else {
+          wx.removeStorageSync('token');
+          wx.removeStorageSync('userInfo');
+          console.log('用户还未授权过', res);
+          // wx.navigateTo({
+          //   url: '/pages/ucenter/login'
+          // });
+          // this.userInfo = {};
+        }
+      }
+    });
+  },
   methods: {
     // 获取我的收藏信息
     async getCollectList () {
