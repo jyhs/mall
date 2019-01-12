@@ -11,7 +11,7 @@
 	"miniprogramRoot": "dist/",
 	"compileType": "miniprogram",
 	"appid": "wxe8f62e2ca775a16e",
-	"projectname": "mall",
+	"projectname": "jyhs",
 	"condition": {
 		"search": {
 			"current": -1,

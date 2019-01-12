@@ -43,6 +43,42 @@ export default {
       canIUse: wx.canIUse('button.open-type.getUserInfo')
     }
   },
+  onShow () {
+    let userInfo = wx.getStorageSync('userInfo');
+    let token = wx.getStorageSync('token');
+    let self = this;
+    console.log('缓存中的个人信息userInfo', userInfo);
+    console.log('缓存中的个人信息token', token);
+    if (userInfo) {
+      this.userInfo = userInfo;
+    } else {
+      this.userInfo = {};
+    }
+    wx.getSetting({
+      success (res) {
+        console.log('res', res)
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success (res) {
+              console.log('res.userInfo', res.userInfo)
+              // this.userInfo = res.userInfo
+              // 用户已经授权过
+              self.userInfo = res.userInfo;
+              console.log('用户已经授权过')
+              wx.navigateTo({
+                url: '/pages/ucenter/index'
+              })
+            }
+          })
+        } else {
+          wx.removeStorageSync('token');
+          wx.removeStorageSync('userInfo');
+          console.log('用户还未授权过', res)
+          // this.userInfo = {};
+        }
+      }
+    })
+  },
   methods: {
     countDownText (s) {
       this.showtime = `${s}s后重新获取`
@@ -77,6 +113,7 @@ export default {
       wx.setStorageSync('userInfo', this.userInfo);
       wx.setStorageSync('token', event.mp.detail.token);
       if (event.mp.detail.rawData) {
+        console.log('12345')
         wx.switchTab({
           url: '/pages/ucenter/index'
         })
@@ -136,7 +173,6 @@ export default {
       this.userInfo2.phoneNumber = e.mp.detail.value;
     },
     bindCode (e) {
-      debugger
       console.log('验证码错误', e.mp.detail.value.length)
       this.userInfo2.code = e.mp.detail.value;
       console.log('验证码错误2222', this.userInfo2.code)
