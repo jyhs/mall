@@ -3,123 +3,142 @@
     <view class="container" v-if="userInfo.avatarUrl">
       <view class="profile-info"/>
       <view class="user-menu">
-        <view class="character-info"> 
+        <view class="character-info">
           <view>
-          <img class="avatar" :src="userInfo.avatarUrl">
-        </view>
-        <view class="character-text">
-           <view class="name">
-            <text class="name">{{userInfo.nickName}}</text>
+            <img class="avatar" :src="userInfo.avatarUrl">
           </view>
-          <view class="character-itemlist">
-          <navigator url="/pages/ucenter/collect">
-          <view class="character-item">
-            <text class="txt">0</text>
-            <view>
-              <text class="description">关注商家</text>
+          <view class="character-text">
+            <view class="name">
+              <text class="name">{{userInfo.nickName}}</text>
+            </view>
+            <view class="character-itemlist">
+              <navigator url="/pages/ucenter/collect">
+                <view class="character-item">
+                  <text class="txt">0</text>
+                  <view>
+                    <text class="description">关注商家</text>
+                  </view>
+                </view>
+              </navigator>
+              <navigator url="/pages/ucenter/collect">
+                <view class="character-item">
+                  <view class="character-item2">
+                    <text class="txt">0</text>
+                    <view>
+                      <text class="description">生物收藏</text>
+                    </view>
+                  </view>
+                </view>
+              </navigator>
+              <navigator url="/pages/ucenter/collect">
+                <view class="character-item">
+                  <text class="txt">0</text>
+                  <view>
+                    <text class="description">我的积分</text>
+                  </view>
+                </view>
+              </navigator>
             </view>
           </view>
-          </navigator>
-          <navigator url="/pages/ucenter/collect">
-          <view class="character-item">
-            <view class="character-item2">
-            <text class="txt">0</text>
-            <view>
-              <text class="description">生物收藏</text>
-            </view>
-            </view>
+        </view>
+        <view class="character-menu">
+          <view class="item">
+            <navigator url="/pages/ucenter/order" class="a">
+              <view class="item-container">
+                <view class="item-container-icon">
+                  <text class="icon order"></text>
+                  <text class="txt">我的订单</text>
+                </view>
+                <view class="item-container-end">
+                  <text class="icon">></text>
+                </view>
+              </view>
+            </navigator>
           </view>
-          </navigator>
-          <navigator url="/pages/ucenter/collect">
-          <view class="character-item">
-            <text class="txt">0</text>
-            <view>
-              <text class="description">我的积分</text>
-            </view>
+          <view class="item">
+            <navigator url="/pages/ucenter/coupon" class="a">
+              <view class="item-container">
+                <view class="item-container-icon">
+                  <text class="icon coupon"></text>
+                  <text class="txt">优惠券</text>
+                </view>
+                <view class="item-container-end">
+                  <text class="icon">></text>
+                </view>
+              </view>
+            </navigator>
           </view>
-          </navigator>
+          <view class="item">
+            <navigator url="/pages/ucenter/collect" class="a">
+              <view class="item-container">
+                <view class="item-container-icon">
+                  <img class="icon" src="/static/images/icon_collect.png">
+                  <text class="txt">我的收藏</text>
+                </view>
+                <view class="item-container-end">
+                  <text class="icon">></text>
+                </view>
+              </view>
+            </navigator>
           </view>
-        </view>
-        </view>
-      <view class="character-menu">
-        <view class="item">
-          <navigator url="/pages/ucenter/order" class="a">
-            <text class="icon order"></text>
-            <text class="txt">我的订单</text>
-          </navigator>
-        </view>
-        <view class="item">
-          <navigator url="/pages/ucenter/coupon" class="a">
-            <text class="icon coupon"></text>
-            <text class="txt">优惠券</text>
-          </navigator>
-        </view>
-        <view class="item no-border">
-          <view class="a">
-            <text class="icon gift"></text>
-            <text class="txt">礼品卡</text>
+          <view class="item">
+            <navigator url="../ucenter/footprint" class="a">
+              <view class="item-container">
+                <view class="item-container-icon">
+                  <img class="icon" src="/static/images/footprint.png">
+                  <text class="txt">我的足迹</text>
+                </view>
+                <view class="item-container-end">
+                  <text class="icon">></text>
+                </view>
+              </view>
+            </navigator>
           </view>
-        </view>
-        <view class="item">
-          <navigator url="/pages/ucenter/collect" class="a">
-            <img class="icon" src="/static/images/icon_collect.png">
-            <text class="txt">我的收藏</text>
-          </navigator>
-        </view>
-        <view class="item">
-          <navigator url="../ucenter/footprint" class="a">
-            <img class="icon" src="/static/images/footprint.png">
-            <text class="txt">我的足迹</text>
-          </navigator>
-        </view>
-        <view class="item no-border">
-          <view class="a">
-            <img class="icon" src="/static/images/VIP.png">
-            <text class="txt">会员福利</text>
+          <view class="item">
+            <navigator url="../ucenter/address" class="a">
+              <view class="item-container">
+                <view class="item-container-icon">
+                  <text class="icon address"></text>
+                  <text class="txt">地址管理</text>
+                </view>
+                <view class="item-container-end">  
+                  <text class="icon">></text>
+                </view>
+              </view>
+            </navigator>
           </view>
-        </view>
-        <view class="item">
-          <navigator url="../ucenter/address" class="a">
-            <text class="icon address"></text>
-            <text class="txt">地址管理</text>
-          </navigator>
-        </view>
-        <view class="item">
-          <view class="a">
-            <text class="icon security"></text>
-            <text class="txt">账号安全</text>
+          <view class="item item-bottom">
+            <navigator url="../ucenter/feedback" class="a">
+              <view class="item-container">
+                <view class="item-container-icon">
+                  <text class="icon feedback"></text>
+                  <text class="txt">意见反馈</text>
+                </view>
+                <view class="item-container-end">
+                  <text class="icon">></text>
+                </view>
+              </view>
+            </navigator>
           </view>
-        </view>
-        <view class="item no-border">
-          <view class="a">
-            <text class="icon kefu"></text>
-            <text class="txt">联系客服</text>
+          <view class="item">
+            <navigator url="../ucenter/express" class="a">
+              <view class="item-container">
+                <view class="item-container-icon">
+                  <img class="icon" src="/static/images/car.png">
+                  <text class="txt">物流查询</text>
+                </view>
+                <view class="item-container-end">
+                  <text class="icon">></text>
+                </view>
+              </view>
+            </navigator>
           </view>
-        </view>
-        <view class="item item-bottom">
-          <view class="a">
-            <text class="icon help"></text>
-            <text class="txt">帮助中心</text>
-          </view>
-        </view>
-        <view class="item item-bottom">
-          <navigator url="../ucenter/feedback" class="a">
-            <text class="icon feedback"></text>
-            <text class="txt">意见反馈</text>
-          </navigator>
-        </view>
-        <view class="item">
-          <navigator url="../ucenter/express" class="a">
-            <img class="icon" src="/static/images/car.png">
-            <text class="txt">物流查询</text>
-          </navigator>
-        </view>
         </view>
       </view>
     </view>
     <view class="login" v-else>
       <view class="login-list">
-    <img class="img" src="https://static.huanjiaohu.com/image/login_header.png"/>
+        <img class="img" src="https://static.huanjiaohu.com/image/login_header.png">
         <view class="userinfo">
           <view class="userinfo-tel">
             <input maxlength="11" type="number" placeholder="请输入手机号" @input="bindInput">
@@ -430,7 +449,7 @@ page {
 .user-menu .info {
   flex: 1;
   height: 50rpx;
-  margin-top:100rpx;
+  margin-top: 100rpx;
   margin-left: 70rpx;
 }
 
@@ -452,19 +471,35 @@ page {
 }
 
 .user-menu {
+  margin-top: -30px;
   width: 95%;
   height: auto;
   overflow: hidden;
-  background: #fff;
+  /* background: #fff; */
 }
 
 .user-menu .item {
-  float: left;
-  width: 33%;
-  height: 167.5rpx;
-  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  /* float: left; */
+  /* width: 33%; */
+  display: flex;
+  height: 78rpx;
+  /* border-right: 1px solid rgba(0, 0, 0, 0.15); */
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   text-align: center;
+}
+
+.user-menu .item .item-container {
+  width: 100%;
+  display: flex;
+  justify-content:space-between;
+}
+
+.user-menu .item .item-container .item-container-icon {
+  display: flex;
+}
+
+.user-menu .item .item-container .item-container-end{
+  margin-left: 200px;
 }
 
 .user-menu .item .a {
@@ -570,12 +605,13 @@ page {
   border-top: 1px solid #e1e1e1;
 }
 
-.userinfo-tel,.userinfo-code{
+.userinfo-tel,
+.userinfo-code {
   display: flex;
-  justify-content:space-between;
-  margin:20px;
-  border:solid 1px #d6d6d6;
-  border-radius:4px;
+  justify-content: space-between;
+  margin: 20px;
+  border: solid 1px #d6d6d6;
+  border-radius: 4px;
 }
 .userinfo-tel > input,
 .userinfo-code > input{
@@ -638,38 +674,45 @@ width:100%;
   background: #26ab28;
 }
 .character-info {
-  display: flex
+  background: #fff;
+  display: flex;
 }
+
+.character-menu {
+  background: #fff;
+  margin-top: 10px;
+}
+
 .character-text {
-margin-left:20rpx; 
+  margin-left: 20rpx;
 }
 
 .character-itemlist {
   margin-top: 30rpx;
   justify-content: flex-end;
-  display: flex
+  display: flex;
 }
 
-.character-info .info{
+.character-info .info {
   text-align: center;
   display: inherit;
   /* margin-left:320rpx; */
-  margin-bottom: 20rpx
+  margin-bottom: 20rpx;
 }
 
-.character-info .info navigator{
-  margin:0px 5px;
+.character-info .info navigator {
+  margin: 0px 5px;
 }
 
 .character-item {
   font-size: 14px;
 }
-.character-item2{
-  margin: 0px 50px;
+.character-item2 {
+  margin: 0px 40px;
 }
 
-.character-item .txt{
-  text-align:center;
+.character-item .txt {
+  text-align: center;
   margin-bottom: 5px;
   font-size: 16px;
   color: rgb(216, 22, 22);
