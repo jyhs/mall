@@ -1,124 +1,155 @@
 <template >
-<view>
-<view class="container" v-if="userInfo.avatarUrl">
-  <view class="profile-info">
-    <view >
-      <img class="avatar" :src="userInfo.avatarUrl"/>
-      <view class="info">
-        <text class="name">{{userInfo.nickName}}</text>
-      </view>
-    </view>
-    <!-- <view  class="goLogin">
-      <navigator url="/pages/ucenter/login">
-      <img class="icon" src="/static/images/ic_menu_me_pressed.png"/>
-      <button v-if="canIUse" open-type="getUserInfo" @getuserinfo="goLogin" class="goLoginBtn" >点击，授权登录~</button>
-      </navigator>
-    </view> -->
-  </view>
-
-  <view class="user-menu">
-    <view class="item">
-      <navigator url="/pages/ucenter/order" class="a">
-        <text class="icon order"></text>
-        <text class="txt">我的订单</text>
-      </navigator>
-    </view>
-    <view class="item">
-      <navigator url="/pages/ucenter/coupon" class="a">
-        <text class="icon coupon"></text>
-        <text class="txt">优惠券</text>
-      </navigator>
-    </view>
-    <view class="item no-border">
-      <view class="a">
-        <text class="icon gift"></text>
-        <text class="txt">礼品卡</text>
-      </view>
-    </view>
-    <view class="item">
-      <navigator url="/pages/ucenter/collect" class="a">
-        <img class="icon" src="/static/images/icon_collect.png"/>
-        <text class="txt">我的收藏</text>
-      </navigator>
-    </view>
-    <view class="item">
-      <navigator url="../ucenter/footprint" class="a">
-        <img class="icon" src="/static/images/footprint.png"/>
-        <text class="txt">我的足迹</text>
-      </navigator>
-    </view>
-    <view class="item no-border">
-      <view class="a">
-        <img class="icon" src="/static/images/VIP.png"/>
-        <text class="txt">会员福利</text>
-      </view>
-    </view>
-    <view class="item">
-      <navigator url="../ucenter/address" class="a">
-        <text class="icon address"></text>
-        <text class="txt">地址管理</text>
-      </navigator>
-    </view>
-    <view class="item">
-      <view class="a">
-        <text class="icon security"></text>
-        <text class="txt">账号安全</text>
-      </view>
-    </view>
-    <view class="item no-border">
-      <view class="a">
-        <text class="icon kefu"></text>
-        <text class="txt">联系客服</text>
-      </view>
-    </view>
-    <view class="item item-bottom">
-      <view class="a">
-        <text class="icon help"></text>
-        <text class="txt">帮助中心</text>
-      </view>
-    </view>
-    <view class="item item-bottom">
-      <navigator url="../ucenter/feedback" class="a">
-        <text class="icon feedback"></text>
-        <text class="txt">意见反馈</text>
-      </navigator>
-    </view>
-    <view class="item">
-      <navigator url="../ucenter/express" class="a">
-        <img class="icon" src="/static/images/car.png"/>
-        <text class="txt">物流查询</text>
-      </navigator>
-    </view>
-  </view>
-  <!-- <view v-if="userInfo.avatarUrl" class="logout" @click="exitLogin">退出登录</view> -->
-</view>
-<view class="login" v-else>
-    <view class="login-list">
-    <img class="img" src="https://static.huanjiaohu.com/image/login_header.png"/>
-      <view class="userinfo">
-        <view class="userinfo-tel">
-          <input maxlength="11" type="number" placeholder="请输入手机号" @input="bindInput"/>
-          <button plain="true" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber"> 
-              自动填写
-          </button>
-           </view>
-          <view class="userinfo-code">
-         <input type="number" placeholder="短信验证码" @input='bindCode' />
-         <button plain="true" v-if="showtime===null" @click="getPhoneCode" :disabled="codeDisabled"> 
-              获取验证码
-          </button>
-    <div v-else class="captcha-button">
-      {{showtime}}
-    </div>
+  <view>
+    <view class="container" v-if="userInfo.avatarUrl">
+      <view class="profile-info"/>
+      <view class="user-menu">
+        <view class="character-info"> 
+          <view>
+          <img class="avatar" :src="userInfo.avatarUrl">
         </view>
-         <view class="userinfo-confirm">
-             <button v-if="canIUse" plain="true" :disabled="userInfo2.disabled" open-type="getUserInfo" @getuserinfo="onConfirm" @class="goLoginBtn" >进入小程序</button>
-             <!-- <button v-if="canIUse" plain="true" @click="onConfirm" @class="goLoginBtn" >确定</button> -->
+        <view class="character-text">
+           <view class="name">
+            <text class="name">{{userInfo.nickName}}</text>
           </view>
+          <view class="character-itemlist">
+          <navigator url="/pages/ucenter/collect">
+          <view class="character-item">
+            <text class="txt">0</text>
+            <view>
+              <text class="description">关注商家</text>
+            </view>
+          </view>
+          </navigator>
+          <navigator url="/pages/ucenter/collect">
+          <view class="character-item">
+            <view class="character-item2">
+            <text class="txt">0</text>
+            <view>
+              <text class="description">生物收藏</text>
+            </view>
+            </view>
+          </view>
+          </navigator>
+          <navigator url="/pages/ucenter/collect">
+          <view class="character-item">
+            <text class="txt">0</text>
+            <view>
+              <text class="description">我的积分</text>
+            </view>
+          </view>
+          </navigator>
+          </view>
+        </view>
+        </view>
+      <view class="character-menu">
+        <view class="item">
+          <navigator url="/pages/ucenter/order" class="a">
+            <text class="icon order"></text>
+            <text class="txt">我的订单</text>
+          </navigator>
+        </view>
+        <view class="item">
+          <navigator url="/pages/ucenter/coupon" class="a">
+            <text class="icon coupon"></text>
+            <text class="txt">优惠券</text>
+          </navigator>
+        </view>
+        <view class="item no-border">
+          <view class="a">
+            <text class="icon gift"></text>
+            <text class="txt">礼品卡</text>
+          </view>
+        </view>
+        <view class="item">
+          <navigator url="/pages/ucenter/collect" class="a">
+            <img class="icon" src="/static/images/icon_collect.png">
+            <text class="txt">我的收藏</text>
+          </navigator>
+        </view>
+        <view class="item">
+          <navigator url="../ucenter/footprint" class="a">
+            <img class="icon" src="/static/images/footprint.png">
+            <text class="txt">我的足迹</text>
+          </navigator>
+        </view>
+        <view class="item no-border">
+          <view class="a">
+            <img class="icon" src="/static/images/VIP.png">
+            <text class="txt">会员福利</text>
+          </view>
+        </view>
+        <view class="item">
+          <navigator url="../ucenter/address" class="a">
+            <text class="icon address"></text>
+            <text class="txt">地址管理</text>
+          </navigator>
+        </view>
+        <view class="item">
+          <view class="a">
+            <text class="icon security"></text>
+            <text class="txt">账号安全</text>
+          </view>
+        </view>
+        <view class="item no-border">
+          <view class="a">
+            <text class="icon kefu"></text>
+            <text class="txt">联系客服</text>
+          </view>
+        </view>
+        <view class="item item-bottom">
+          <view class="a">
+            <text class="icon help"></text>
+            <text class="txt">帮助中心</text>
+          </view>
+        </view>
+        <view class="item item-bottom">
+          <navigator url="../ucenter/feedback" class="a">
+            <text class="icon feedback"></text>
+            <text class="txt">意见反馈</text>
+          </navigator>
+        </view>
+        <view class="item">
+          <navigator url="../ucenter/express" class="a">
+            <img class="icon" src="/static/images/car.png">
+            <text class="txt">物流查询</text>
+          </navigator>
+        </view>
+        </view>
       </view>
+    </view>
+    <view class="login" v-else>
+      <view class="login-list">
+    <img class="img" src="https://static.huanjiaohu.com/image/login_header.png"/>
+        <view class="userinfo">
+          <view class="userinfo-tel">
+            <input maxlength="11" type="number" placeholder="请输入手机号" @input="bindInput">
+            <button plain="true" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">自动填写</button>
+          </view>
+          <view class="userinfo-code">
+            <input type="number" placeholder="短信验证码" @input="bindCode">
+            <button
+              plain="true"
+              v-if="showtime===null"
+              @click="getPhoneCode"
+              :disabled="codeDisabled"
+            >获取验证码</button>
+            <div v-else class="captcha-button">{{showtime}}</div>
+          </view>
+          <view class="userinfo-confirm">
+            <button
+              v-if="canIUse"
+              plain="true"
+              :disabled="userInfo2.disabled"
+              open-type="getUserInfo"
+              @getuserinfo="onConfirm"
+              @class="goLoginBtn"
+            >确定</button>
+            <!-- <button v-if="canIUse" plain="true" @click="onConfirm" @class="goLoginBtn" >确定</button> -->
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
-</view>
-</view>
 </template>
 
 <script>
@@ -137,7 +168,7 @@ export default {
         disabled: true
       },
       canIUse: wx.canIUse('button.open-type.getUserInfo')
-    }
+    };
   },
   onShow () {
     // console.log('全局变量', app);
@@ -160,24 +191,24 @@ export default {
     }
     wx.getSetting({
       success (res) {
-        console.log('res', res)
+        console.log('res', res);
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success (res) {
               wx.setStorageSync('userInfo', res.userInfo);
-              console.log('res.userInfo', res.userInfo)
+              console.log('res.userInfo', res.userInfo);
               self.userInfo = res.userInfo;
-              console.log('用户已经授权过')
+              console.log('用户已经授权过');
             }
-          })
+          });
         } else {
           wx.removeStorageSync('token');
           wx.removeStorageSync('userInfo');
-          console.log('用户还未授权过', res)
+          console.log('用户还未授权过', res);
           // this.userInfo = {};
         }
       }
-    })
+    });
   },
   methods: {
     // 点击登陆
@@ -185,7 +216,7 @@ export default {
       if (!event.mp.detail.rawData) {
         wx.switchTab({
           url: '/pages/ucenter/index'
-        })
+        });
       } else {
         this.userInfo = event.mp.detail.userInfo;
         // app.globalData.userInfo = res.data.userInfo;
@@ -216,10 +247,10 @@ export default {
             });
           }
         }
-      })
+      });
     },
     countDownText (s) {
-      this.showtime = `${s}s后重新获取`
+      this.showtime = `${s}s后重新获取`;
     },
     // 倒计时 60秒 不需要很精准
     countDown (times) {
@@ -232,20 +263,20 @@ export default {
         if (self.timeCounter == null) {
           return false;
         }
-        count++
+        count++;
         self.countDownText(times - count + 1);
         if (count > times) {
-          clearTimeout(self.timeCounter)
+          clearTimeout(self.timeCounter);
           self.showtime = null;
         } else {
-          self.timeCounter = setTimeout(countDownStart, interval)
+          self.timeCounter = setTimeout(countDownStart, interval);
         }
       }
     },
     onConfirm (event) {
       if (wx.canIUse('button.open-type.getUserInfo')) {
       } else {
-        console.log('请升级微信版本')
+        console.log('请升级微信版本');
       }
       let self = this;
       wx.setStorageSync('userInfo', this.userInfo);
@@ -262,36 +293,37 @@ export default {
           content: '授权后才能进行后续操作',
           success: function (res) {
             if (res.confirm) {
-              console.log('用户点击确定')
+              console.log('用户点击确定');
             } else {
-              console.log('用户点击取消')
+              console.log('用户点击取消');
             }
           }
-        })
-        this.userInfo2 = {}
+        });
+        this.userInfo2 = {};
       }
-      console.log('this.userInfo', this.userInfo)
+      console.log('this.userInfo', this.userInfo);
     },
     getPhoneNumber (e) {
-      console.log('111', e.mp.detail.encryptedData)
-      console.log(e.mp.detail.iv)
-      console.log('222', encodeURIComponent(e.mp.detail.encryptedData))
+      console.log('111', e.mp.detail.encryptedData);
+      console.log(e.mp.detail.iv);
+      console.log('222', encodeURIComponent(e.mp.detail.encryptedData));
       wx.login({
         success: res => {
           console.log(res.code);
           wx.request({
             url: 'https://你的解密地址',
             data: {
-              'encryptedData': encodeURIComponent(e.mp.detail.encryptedData),
-              'iv': e.mp.detail.iv,
-              'code': res.code
+              encryptedData: encodeURIComponent(e.mp.detail.encryptedData),
+              iv: e.mp.detail.iv,
+              code: res.code
             },
             method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
             header: {
               'content-type': 'application/json'
             }, // 设置请求的 header
             success: function (res) {
-              if (res.status === 1) { // 我后台设置的返回值为1是正确
+              if (res.status === 1) {
+                // 我后台设置的返回值为1是正确
                 // 存入缓存即可
                 wx.setStorageSync('phone', res.phone);
               }
@@ -299,34 +331,37 @@ export default {
             fail: function (err) {
               console.log(err);
             }
-          })
+          });
         }
-      })
+      });
     },
     bindInput (e) {
       this.userInfo2.phoneNumber = e.mp.detail.value;
     },
     bindCode (e) {
-      console.log('验证码错误', e.mp.detail.value.length)
+      console.log('验证码错误', e.mp.detail.value.length);
       this.userInfo2.code = e.mp.detail.value;
-      console.log('验证码错误2222', this.userInfo2.code)
+      console.log('验证码错误2222', this.userInfo2.code);
       if (this.userInfo2.code.length === 4) {
-        this.checkCode()
+        this.checkCode();
       }
     },
     async checkCode () {
-      const res = await api.validateVerification({requestId: this.userInfo2.requestId, code: this.userInfo2.code});
-      console.log('res', res)
+      const res = await api.validateVerification({
+        requestId: this.userInfo2.requestId,
+        code: this.userInfo2.code
+      });
+      console.log('res', res);
       if (res.data) {
-        this.userInfo2.disabled = false
-        console.log('验证成功')
+        this.userInfo2.disabled = false;
+        console.log('验证成功');
       } else {
         wx.showToast({
           title: '验证码错误',
           icon: 'none',
           duration: 1000,
           mask: true
-        })
+        });
       }
     },
     async getPhoneCode () {
@@ -336,113 +371,103 @@ export default {
           icon: 'none',
           duration: 1000,
           mask: true
-        })
+        });
       } else {
         this.countDown(59);
-        console.log('this.userInfo2.phoneNumber', this.userInfo2.phoneNumber)
-        const res = await api.getVerification({phone: this.userInfo2.phoneNumber});
+        console.log('this.userInfo2.phoneNumber', this.userInfo2.phoneNumber);
+        const res = await api.getVerification({
+          phone: this.userInfo2.phoneNumber
+        });
         this.userInfo2.requestId = res.requestId;
       }
     }
-
   }
-}
+};
 </script>
 
 <style scoped>
-page{
-    height: 100%;
-    width: 100%;
-    background: #f4f4f4;
+page {
+  height: 100%;
+  width: 100%;
+  background: #f4f4f4;
 }
-.container{
-    background: #f4f4f4;
-    height: auto;
-    overflow: hidden;
-    width: 100%;
+.container {
+  background: #f4f4f4;
+  height: auto;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
 }
-.profile-info{
-    width: 100%;
-    height: 420rpx;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0 30.25rpx;
-    background: url(https://static.huanjiaohu.com/image/login_banner.jpg);
-    background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
+.profile-info {
+  width: 100%;
+  height: 470rpx;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 30.25rpx;
+  background: url(https://static.huanjiaohu.com/image/login_banner.jpg);
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
 
-
-    /* background: #fff; */
-}
-
-.profile-info .icon{
-    position: absolute;
-    left: 80rpx;
-    top: 83rpx;
-    height: 100rpx;
-    width: 100rpx;
+  /* background: #fff; */
 }
 
-.profile-info .goLogin{
-    margin-left: 185rpx;
+/* .user-floatmenu{
+  width: 90%;
+  margin-top: -20px;
+} */
+
+.user-menu .avatar {
+  height: 148rpx;
+  width: 148rpx;
+  border-radius: 10%;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
 }
 
-.profile-info .goLoginBtn{
-    background-color: #333;
-    color: #fff;
+.user-menu .info {
+  flex: 1;
+  height: 50rpx;
+  margin-top:100rpx;
+  margin-left: 70rpx;
 }
 
-.profile-info .avatar{
-    height: 148rpx;
-    width: 148rpx;
-    border-radius: 50%;
-    margin-left: 60rpx;
+.user-menu .character-info .name {
+  /* display: block; */
+  /* height: 45rpx; */
+  /* line-height: 45rpx; */
+  /* font-size: 37.5rpx; */
+  margin-top: 10rpx;
 }
 
-.profile-info .info{
-    flex: 1;
-    height: 50rpx;
-    margin-left: 70rpx;
+.profile-info .level {
+  display: block;
+  height: 30rpx;
+  line-height: 30rpx;
+  margin-bottom: 10rpx;
+  color: #7f7f7f;
+  font-size: 30rpx;
 }
 
-.profile-info .name{
-    display: block;
-    height: 45rpx;
-    line-height: 45rpx;
-    color: #fff;
-    font-size: 37.5rpx;
-    margin-bottom: 10rpx;
+.user-menu {
+  width: 95%;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
 }
 
-.profile-info .level{
-    display: block;
-    height: 30rpx;
-    line-height: 30rpx;
-    margin-bottom: 10rpx;
-    color: #7f7f7f;
-    font-size: 30rpx;
+.user-menu .item {
+  float: left;
+  width: 33%;
+  height: 167.5rpx;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  text-align: center;
 }
 
-.user-menu{
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    background: #fff;
-}
-
-.user-menu .item{
-    float: left;
-    width: 33%;
-    height: 167.5rpx;
-    border-right: 1px solid rgba(0,0,0,.15);
-    border-bottom: 1px solid rgba(0,0,0,.15);
-    text-align: center;
-}
-
-.user-menu .item .a{
+.user-menu .item .a {
   display: flex;
   width: 100%;
   height: 100%;
@@ -452,89 +477,97 @@ page{
 }
 
 .user-menu .item.no-border {
-    border-right: 0;
+  border-right: 0;
 }
 
 .user-menu .item.item-bottom {
-    border-bottom: none;
+  /* border-bottom: none; */
 }
 
-.user-menu .icon{
-    margin: 0 auto;
-    display: block;
-    height: 52.803rpx;
-    width: 52.803rpx;
-    margin-bottom: 16rpx;
+.user-menu .icon {
+  margin: 0 auto;
+  display: block;
+  height: 52.803rpx;
+  width: 52.803rpx;
+  margin-bottom: 16rpx;
 }
 
 .user-menu image {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
-.user-menu .icon.order{
-    background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png) 0 -437.5rpx no-repeat;
-    background-size: 52.803rpx;
+.user-menu .icon.order {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png)
+    0 -437.5rpx no-repeat;
+  background-size: 52.803rpx;
 }
 
-
-.user-menu .icon.coupon{
-    background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png) 0 -62.4997rpx no-repeat;
-    background-size: 52.803rpx;
+.user-menu .icon.coupon {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png)
+    0 -62.4997rpx no-repeat;
+  background-size: 52.803rpx;
 }
 
-.user-menu .icon.gift{
-    background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png) 0 -187.5rpx no-repeat;
-    background-size: 52.803rpx;
+.user-menu .icon.gift {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png)
+    0 -187.5rpx no-repeat;
+  background-size: 52.803rpx;
 }
 
-.user-menu .icon.address{
-    background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png) 0 0 no-repeat;
-    background-size: 52.803rpx;
+.user-menu .icon.address {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png)
+    0 0 no-repeat;
+  background-size: 52.803rpx;
 }
 
-.user-menu .icon.security{
-    background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png) 0 -500rpx no-repeat;
-    background-size: 52.803rpx;
+.user-menu .icon.security {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png)
+    0 -500rpx no-repeat;
+  background-size: 52.803rpx;
 }
 
-.user-menu .icon.kefu{
-    background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png) 0 -312.5rpx no-repeat;
-    background-size: 52.803rpx;
+.user-menu .icon.kefu {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png)
+    0 -312.5rpx no-repeat;
+  background-size: 52.803rpx;
 }
 
-.user-menu .icon.help{
-    background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png) 0 -250rpx no-repeat;
-    background-size: 52.803rpx;
+.user-menu .icon.help {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png)
+    0 -250rpx no-repeat;
+  background-size: 52.803rpx;
 }
 
-.user-menu .icon.feedback{
-    background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png) 0 -125rpx no-repeat;
-    background-size: 52.803rpx;
+.user-menu .icon.feedback {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/ucenter-sdf6a55ee56-f2c2b9c2f0.png)
+    0 -125rpx no-repeat;
+  background-size: 52.803rpx;
 }
 
-.user-menu .txt{
-    display: block;
-    height: 24rpx;
-    width: 100%;
-    font-size: 24rpx;
-    color:#333;
+.user-menu .txt {
+  display: block;
+  height: 24rpx;
+  width: 100%;
+  font-size: 24rpx;
+  color: #333;
 }
 
-.logout{
-    margin-top: 50rpx;
-    height: 101rpx;
-    width: 100%;
-    line-height: 101rpx;
-    text-align: center;
-    background: #fff;
-    color: #ea3732;
-    font-size: 30rpx;
+.logout {
+  margin-top: 50rpx;
+  height: 101rpx;
+  width: 100%;
+  line-height: 101rpx;
+  text-align: center;
+  background: #fff;
+  color: #ea3732;
+  font-size: 30rpx;
 }
-.login-list{
+.login-list {
   width: 100%;
   height: 100vh;
   overflow: hidden;
   background: #fff;
+  padding-left: 30rpx;
   border-top: 1px solid #e1e1e1;
 }
 
@@ -591,5 +624,41 @@ width:100%;
   line-height:48px;
   background: #26ab28;
 }
+.character-info {
+  display: flex
+}
+.character-text {
+margin-left:20rpx; 
+}
 
+.character-itemlist {
+  margin-top: 30rpx;
+  justify-content: flex-end;
+  display: flex
+}
+
+.character-info .info{
+  text-align: center;
+  display: inherit;
+  /* margin-left:320rpx; */
+  margin-bottom: 20rpx
+}
+
+.character-info .info navigator{
+  margin:0px 5px;
+}
+
+.character-item {
+  font-size: 14px;
+}
+.character-item2{
+  margin: 0px 50px;
+}
+
+.character-item .txt{
+  text-align:center;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: rgb(216, 22, 22);
+}
 </style>
