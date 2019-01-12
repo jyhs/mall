@@ -552,9 +552,22 @@ page{
   font-size:14px;
   justify-content:space-between;
   width:70%;
-  padding-left:10px;
+  padding-left:36px;
 }
-
+.userinfo-tel > input
+{
+      background: url(https://static.huanjiaohu.com/icon/phone.png);
+      background-repeat: no-repeat;
+      background-size: 8%;
+      background-position: 10px;
+}
+.userinfo-code > input
+{
+      background: url(https://static.huanjiaohu.com/icon/validate.png);
+      background-repeat: no-repeat;
+      background-size: 8%;
+      background-position: 10px;
+}
 .userinfo-tel button,
 .userinfo-code button{
   border:none;
@@ -571,11 +584,12 @@ page{
   text-align:right;
   padding:0 12px;
   border-radius:0;
+  flex-shrink:0;
 }
+.captcha-button{font-size:14px;line-height:48px;padding-right:10px;width:50%;text-align: right}
 .userinfo-tel button{border:none;}
 
 .login-list > image{
-
 width:100%;
 }
 
