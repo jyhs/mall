@@ -164,9 +164,8 @@ export default {
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success (res) {
+              wx.setStorageSync('userInfo', res.userInfo);
               console.log('res.userInfo', res.userInfo)
-              // this.userInfo = res.userInfo
-              // 用户已经授权过
               self.userInfo = res.userInfo;
               console.log('用户已经授权过')
             }
