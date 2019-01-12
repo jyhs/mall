@@ -143,7 +143,7 @@
               open-type="getUserInfo"
               @getuserinfo="onConfirm"
               @class="goLoginBtn"
-            >确定</button>
+            >进入小程序</button>
             <!-- <button v-if="canIUse" plain="true" @click="onConfirm" @class="goLoginBtn" >确定</button> -->
           </view>
         </view>
@@ -567,7 +567,6 @@ page {
   height: 100vh;
   overflow: hidden;
   background: #fff;
-  padding-left: 30rpx;
   border-top: 1px solid #e1e1e1;
 }
 
